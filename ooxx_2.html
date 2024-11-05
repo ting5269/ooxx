@@ -88,6 +88,7 @@
     <div id="scoreBoard">
         <p>玩家（X）： <span id="playerScore">0</span></p>
         <p>電腦（O）： <span id="computerScore">0</span></p>
+        <p>平手： <span id="drawScore">0</span></p>
     </div>
     <button id="startButton">開始遊戲</button>
     <div class="game-board" id="board" style="display: none;">
@@ -112,10 +113,12 @@
         const restartButton = document.getElementById('restartButton');
         const playerScoreDisplay = document.getElementById('playerScore');
         const computerScoreDisplay = document.getElementById('computerScore');
+        const drawScoreDisplay = document.getElementById('drawScore'); // 新增平手計數顯示
         let circleTurn;
         let gameStarted = false;
         let playerScore = 0;
         let computerScore = 0;
+        let drawScore = 0; // 新增平手計數
         let playerCanPlay = true;
 
         startButton.addEventListener('click', startGame);
@@ -147,6 +150,8 @@
                 gameStarted = false;
                 disableCells();
             } else if (isDraw()) {
+                drawScore++;
+                drawScoreDisplay.innerText = drawScore; // 更新平手計數
                 setTimeout(() => alert("平手!"), 10);
                 gameStarted = false;
                 disableCells();
@@ -166,6 +171,8 @@
                 gameStarted = false;
                 disableCells();
             } else if (isDraw()) {
+                drawScore++;
+                drawScoreDisplay.innerText = drawScore; // 更新平手計數
                 setTimeout(() => alert("平手!"), 10);
                 gameStarted = false;
                 disableCells();
@@ -243,6 +250,7 @@
             }
             return bestMove;
         }
+    
     </script>
 </body>
 </html>
